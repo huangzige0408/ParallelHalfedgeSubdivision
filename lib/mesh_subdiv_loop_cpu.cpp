@@ -152,7 +152,7 @@ Mesh_Subdiv_Loop_CPU::refine_vertices()
 			const vec3 increm_smooth_vx = beta_ * v_old_vx + beta * v_next_old_vx ;
 			const vec3 increm_sharp_vx = edge_sharpness_factr * (0.125f * v_next_old_vx + increm_sharp_factr_v_old * v_old_vx + increm_sharp_factr_v_border * V_old[v_border_id]) ;
 
-      if ((n==2) || n_creases > 2) // Corner vertex rule
+			if (n==2|| n == 3 || n_creases > 2) // Corner vertex rule
 			{
 				apply_atomic_vec3_increment(new_even_pt_vx,increm_corner_vx) ;
 			}
@@ -164,9 +164,9 @@ Mesh_Subdiv_Loop_CPU::refine_vertices()
 			{
 				const vec3 incremV = lerp(increm_corner_vx,increm_sharp_vx,lerp_alpha) ;
 				apply_atomic_vec3_increment(new_even_pt_vx, incremV) ;
-      }
+			}
 		}
-	_BARRIER
+		_BARRIER
 	}
 
 	set_current_depth(d_max) ;

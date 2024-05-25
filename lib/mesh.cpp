@@ -82,7 +82,7 @@ Mesh::Face(const halfedge_buffer_cage& buffer, int idx) const
 float
 Mesh::Sharpness(const crease_buffer& buffer, int idx) const
 {
-	return idx > buffer.size() ? 0. : buffer[idx].Sharpness ;
+	return idx >= buffer.size() ? 0. : buffer[idx].Sharpness ;
 }
 
 int

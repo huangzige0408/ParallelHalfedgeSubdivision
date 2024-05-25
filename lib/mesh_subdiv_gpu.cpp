@@ -244,6 +244,13 @@ Mesh_Subdiv_GPU::create_program(const std::string &shader_file, GLuint in_buffer
 	djgp_push_file(builder, shader_file.c_str()) ;
 	djgp_to_gl(builder, 450, false, true, &program) ;
 
+	// set source pointers
+	auto it = builder->next;
+	while (it) {
+		//printf("%s\n",it->src);
+		it = it->next;
+	}
+
 	djgp_release(builder) ;
 
 	return program ;
